@@ -3,7 +3,7 @@ package net.lyugaev.webcrawler;
 /**
  * Created by dmitry on 17.09.16.
  */
-public class CrawlerMain {
+public class Application {
 
     static final String START_URL = "https://spring.io/guides";
     static final int MAX_LINK_DEPTH = 2;
