@@ -23,10 +23,12 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="Problems" />
+        <module name="WebCrawler" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Problems" target="1.5" />
+      <module name="WebCrawler" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
