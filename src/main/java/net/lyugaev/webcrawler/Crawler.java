@@ -7,6 +7,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -15,19 +16,23 @@ import java.util.List;
 public class Crawler {
 
     private int maxSearchDepth;
-    private int totalLinkCount = 0;
+    private HashSet<String> crawledLinks = new HashSet<String>();
 
     public Crawler(int maxSearchDepth) {
         this.maxSearchDepth = maxSearchDepth;
     }
 
-    public int getTotalLinkCount() {
-        return totalLinkCount;
+    public int getcrawledLinksSize() {
+        return crawledLinks.size();
+    }
+
+    public void init(String startUrl) {
+        crawledLinks.clear();
+        crawledLinks.add(startUrl);
     }
 
     public void crawl(String url, int linkDepth) {
-        printLink(url, linkDepth);
-        totalLinkCount++;
+        processLink(url, linkDepth);
 
         if (linkDepth == maxSearchDepth)
             return;
@@ -48,14 +53,19 @@ public class Crawler {
         List<String> linkList = new ArrayList<String>();
 
         Elements questions = doc.select("a[href]");
-        for(Element link: questions){
-            linkList.add(link.attr("abs:href"));
+        for(Element linkElement: questions){
+            String link = linkElement.attr("abs:href");
+            if (!crawledLinks.contains(link)) {
+                linkList.add(link);
+                crawledLinks.add(link);
+            }
         }
 
         return linkList;
     }
 
-    private void printLink(String url, int linkDepth) {
+    private void processLink(String url, int linkDepth) {
+        //just print
         for (int i=0; i < linkDepth; i++) {
             System.out.print("     ");
         }

@@ -12,11 +12,12 @@ public class CrawlerMain {
         long start = System.currentTimeMillis();
 
         Crawler crawler = new Crawler(MAX_LINK_DEPTH);
+        crawler.init(START_URL);
         crawler.crawl(START_URL, 0);
 
         long finish = System.currentTimeMillis();
         System.out.println("--------------------------------------------------");
         System.out.println(finish - start + " ms");
-        System.out.println(crawler.getTotalLinkCount() + " links");
+        System.out.println(crawler.getcrawledLinksSize() + " links");
     }
 }
