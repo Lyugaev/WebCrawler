@@ -9,15 +9,18 @@ public class Application {
     static final int MAX_LINK_DEPTH = 2;
 
     public static void main(String[] args) {
-        long start = System.currentTimeMillis();
+//        long start = System.currentTimeMillis();
 
-        Crawler crawler = new Crawler(MAX_LINK_DEPTH);
-        crawler.init(START_URL);
-        crawler.crawl(START_URL, 0);
+//        Crawler crawler = new Crawler(MAX_LINK_DEPTH);
+//        crawler.init(START_URL);
+//        crawler.crawl(START_URL, 0);
 
-        long finish = System.currentTimeMillis();
-        System.out.println("--------------------------------------------------");
-        System.out.println(finish - start + " ms");
-        System.out.println(crawler.getcrawledLinksSize() + " links");
+        CrawlerConcurrent crawlerConcurrent = new CrawlerConcurrent(MAX_LINK_DEPTH);
+        crawlerConcurrent.crawl(START_URL);
+
+//        long finish = System.currentTimeMillis();
+//        System.out.println("--------------------------------------------------");
+//        System.out.println(finish - start + " ms");
+//        System.out.println(crawler.getcrawledLinksSize() + " links");
     }
 }
