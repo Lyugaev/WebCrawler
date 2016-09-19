@@ -15,31 +15,41 @@ import java.util.concurrent.CountDownLatch;
  * Created by dmitry on 15.09.16.
  */
 
+class Link {
+    String url;
+    int linkDepth;
+    String parentUrl;
+
+    public Link(String url, int linkDepth, String parentUrl) {
+        this.url = url;
+        this.linkDepth = linkDepth;
+        this.parentUrl = parentUrl;
+    }
+}
+
 class PageProcessTask implements Runnable {
 
-    String link;
-    int linkDepth;
+    Link link;
     CountDownLatch parentCdl;
 
-    public PageProcessTask(String link, int linkDepth, CountDownLatch parentCdl) {
+    public PageProcessTask(Link link, CountDownLatch parentCdl) {
         this.link = link;
-        this.linkDepth = linkDepth;
         this.parentCdl = parentCdl;
     }
 
     public void run() {
-        processLink(this.link, linkDepth);
+        CrawlerConcurrent.processLink(link);
 
-        if (linkDepth == CrawlerConcurrent.maxSearchDepth) {
+        if (link.linkDepth == CrawlerConcurrent.maxSearchDepth) {
             parentCdl.countDown();
             return;
         }
 
-        List<String> childLinks = retrieveLinks(this.link);
+        List<Link> childLinks = retrieveLinks(link.url);
         CountDownLatch cdl = new CountDownLatch(childLinks.size());
 
-        for(String link : childLinks) {
-            PageProcessTask task = new PageProcessTask(link, linkDepth + 1, cdl);
+        for(Link childLink : childLinks) {
+            PageProcessTask task = new PageProcessTask(childLink, cdl);
             new Thread(task).start();
         }
 
@@ -52,7 +62,7 @@ class PageProcessTask implements Runnable {
         parentCdl.countDown();
     }
 
-    private List<String> retrieveLinks(String url) {
+    private List<Link> retrieveLinks(String url) {
         Document doc = null;
         try {
             doc = Jsoup.connect(url).get();
@@ -60,26 +70,18 @@ class PageProcessTask implements Runnable {
             e.printStackTrace();
         }
 
-        List<String> linkList = new ArrayList<String>();
+        List<Link> linkList = new ArrayList<Link>();
 
         Elements questions = doc.select("a[href]");
         for(Element linkElement: questions){
-            String link = linkElement.attr("abs:href");
-            if (!CrawlerConcurrent.crawledLinks.contains(link)) {
-                linkList.add(link);
-                CrawlerConcurrent.crawledLinks.add(link);
+            String linkUrl = linkElement.attr("abs:href");
+            if (!CrawlerConcurrent.crawledLinks.contains(linkUrl)) {
+                linkList.add(new Link(linkUrl, this.link.linkDepth + 1, url));
+                CrawlerConcurrent.crawledLinks.add(linkUrl);
             }
         }
 
         return linkList;
-    }
-
-    private void processLink(String link, int linkDepth) {
-        //just print
-        for (int i=0; i < linkDepth; i++) {
-            System.out.print("     ");
-        }
-        System.out.println(link);
     }
 }
 
@@ -87,6 +89,7 @@ public class CrawlerConcurrent {
 
     static int maxSearchDepth;
     static HashSet<String> crawledLinks = new HashSet<String>();
+    static private LinkTree linkTree;
 
     public CrawlerConcurrent(int maxSearchDepth) {
         this.maxSearchDepth = maxSearchDepth;
@@ -96,14 +99,18 @@ public class CrawlerConcurrent {
         return crawledLinks.size();
     }
 
-    public void crawl(String startLink) {
+    public void crawl(String startUrl) {
         long start = System.currentTimeMillis();
 
         crawledLinks.clear();
-        crawledLinks.add(startLink);
+        crawledLinks.add(startUrl);
 
         CountDownLatch cdl = new CountDownLatch(1);
-        PageProcessTask task = new PageProcessTask(startLink, 0, cdl);
+
+        Link startLink = new Link(startUrl, 0, "");
+        linkTree = new LinkTree(new Node(startLink));
+
+        PageProcessTask task = new PageProcessTask(startLink, cdl);
         new Thread(task).start();
 
         try {
@@ -112,9 +119,16 @@ public class CrawlerConcurrent {
             e.printStackTrace();
         }
 
+        linkTree.print();
+
         long finish = System.currentTimeMillis();
         System.out.println("--------------------------------------------------");
         System.out.println(finish - start + " ms");
         System.out.println(getcrawledLinksSize() + " links");
+    }
+
+    public static synchronized void processLink(Link link) {
+        //add to link tree
+        linkTree.add(link.parentUrl, link.url, link.linkDepth);
     }
 }
