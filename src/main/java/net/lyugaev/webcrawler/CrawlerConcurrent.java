@@ -94,7 +94,7 @@ public class CrawlerConcurrent {
     static HashSet<String> crawledLinks = new HashSet<String>();
     static private LinkTree linkTree;
 
-    static ExecutorService threadPool = Executors.newFixedThreadPool(100);
+    static ExecutorService threadPool = Executors.newCachedThreadPool();
 
     public CrawlerConcurrent(int maxSearchDepth) {
         this.maxSearchDepth = maxSearchDepth;
@@ -135,6 +135,7 @@ public class CrawlerConcurrent {
     }
 
     public static synchronized void processLink(Link link) {
+        //System.out.println(link.url);
         //add to link tree
         linkTree.add(link.parentUrl, link.url, link.linkDepth);
     }
