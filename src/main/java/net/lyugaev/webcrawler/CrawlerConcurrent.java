@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by dmitry on 15.09.16.
@@ -50,7 +52,7 @@ class PageProcessTask implements Runnable {
 
         for(Link childLink : childLinks) {
             PageProcessTask task = new PageProcessTask(childLink, cdl);
-            new Thread(task).start();
+            CrawlerConcurrent.threadPool.submit(task);
         }
 
         try {
@@ -63,14 +65,15 @@ class PageProcessTask implements Runnable {
     }
 
     private List<Link> retrieveLinks(String url) {
+        List<Link> linkList = new ArrayList<Link>();
+
         Document doc = null;
         try {
             doc = Jsoup.connect(url).get();
         } catch (IOException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            return linkList;
         }
-
-        List<Link> linkList = new ArrayList<Link>();
 
         Elements questions = doc.select("a[href]");
         for(Element linkElement: questions){
@@ -90,6 +93,8 @@ public class CrawlerConcurrent {
     static int maxSearchDepth;
     static HashSet<String> crawledLinks = new HashSet<String>();
     static private LinkTree linkTree;
+
+    static ExecutorService threadPool = Executors.newFixedThreadPool(100);
 
     public CrawlerConcurrent(int maxSearchDepth) {
         this.maxSearchDepth = maxSearchDepth;
@@ -111,13 +116,15 @@ public class CrawlerConcurrent {
         linkTree = new LinkTree(new Node(startLink));
 
         PageProcessTask task = new PageProcessTask(startLink, cdl);
-        new Thread(task).start();
+        threadPool.submit(task);
 
         try {
             cdl.await();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        threadPool.shutdown();
 
         linkTree.print();
 

@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="28c7e03f-fcfe-4438-aa99-1bd21ddf6e12" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/LinkTree.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/net/lyugaev/webcrawler/Application.class" afterPath="$PROJECT_DIR$/target/classes/net/lyugaev/webcrawler/Application.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/net/lyugaev/webcrawler/CrawlerConcurrent.class" afterPath="$PROJECT_DIR$/target/classes/net/lyugaev/webcrawler/CrawlerConcurrent.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/net/lyugaev/webcrawler/Link.class" afterPath="$PROJECT_DIR$/target/classes/net/lyugaev/webcrawler/Link.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/net/lyugaev/webcrawler/PageProcessTask.class" afterPath="$PROJECT_DIR$/target/classes/net/lyugaev/webcrawler/PageProcessTask.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/Application.java" afterPath="$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/Application.java" />
@@ -35,8 +35,8 @@
       <file leaf-file-name="Application.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+            <state relative-caret-position="15">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -45,13 +45,15 @@
       <file leaf-file-name="CrawlerConcurrent.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/CrawlerConcurrent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+            <state relative-caret-position="-885">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding>
-                <element signature="e#1730#1736#0" expanded="true" />
-                <element signature="e#2283#2291#0" expanded="true" />
-                <element signature="e#2475#2476#0" expanded="true" />
-                <element signature="e#2517#2518#0" expanded="true" />
+                <element signature="e#1666#1672#0" expanded="true" />
+                <element signature="e#2415#2423#0" expanded="true" />
+                <element signature="e#2591#2592#0" expanded="true" />
+                <element signature="e#2643#2644#0" expanded="true" />
+                <element signature="e#2683#2684#0" expanded="true" />
+                <element signature="e#2725#2726#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -101,9 +103,9 @@
         <option value="$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/Crawler.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/CrawlerMain.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawlerconcurrent/Application.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/CrawlerConcurrent.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/LinkTree.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/Application.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/CrawlerConcurrent.java" />
       </list>
     </option>
   </component>
@@ -887,7 +889,7 @@
       <workItem from="1474133552609" duration="172000" />
       <workItem from="1474269278292" duration="3889000" />
       <workItem from="1474317522727" duration="3000" />
-      <workItem from="1474317540057" duration="8597000" />
+      <workItem from="1474317540057" duration="10139000" />
     </task>
     <servers />
   </component>
@@ -924,7 +926,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77769000" />
+    <option name="totallyTimeSpent" value="79311000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="7" />
@@ -995,10 +997,12 @@
         <state relative-caret-position="45">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
-            <element signature="e#1730#1736#0" expanded="true" />
-            <element signature="e#2283#2291#0" expanded="true" />
-            <element signature="e#2475#2476#0" expanded="true" />
-            <element signature="e#2517#2518#0" expanded="true" />
+            <element signature="e#1666#1672#0" expanded="true" />
+            <element signature="e#2415#2423#0" expanded="true" />
+            <element signature="e#2591#2592#0" expanded="true" />
+            <element signature="e#2643#2644#0" expanded="true" />
+            <element signature="e#2683#2684#0" expanded="true" />
+            <element signature="e#2725#2726#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1016,10 +1020,12 @@
         <state relative-caret-position="45">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
-            <element signature="e#1730#1736#0" expanded="true" />
-            <element signature="e#2283#2291#0" expanded="true" />
-            <element signature="e#2475#2476#0" expanded="true" />
-            <element signature="e#2517#2518#0" expanded="true" />
+            <element signature="e#1666#1672#0" expanded="true" />
+            <element signature="e#2415#2423#0" expanded="true" />
+            <element signature="e#2591#2592#0" expanded="true" />
+            <element signature="e#2643#2644#0" expanded="true" />
+            <element signature="e#2683#2684#0" expanded="true" />
+            <element signature="e#2725#2726#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1181,16 +1187,6 @@
     <entry file="jar:///usr/local/java/jdk1.8.0_92/src.zip!/java/lang/Integer.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawlerconcurrent/Application.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawlerconcurrent/Crawler.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/Crawler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/local/java/jdk1.8.0_92/src.zip!/java/lang/Thread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1210,23 +1206,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/Crawler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/Application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+        <state relative-caret-position="15">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/CrawlerConcurrent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+        <state relative-caret-position="-885">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding>
-            <element signature="e#1730#1736#0" expanded="true" />
-            <element signature="e#2283#2291#0" expanded="true" />
-            <element signature="e#2475#2476#0" expanded="true" />
-            <element signature="e#2517#2518#0" expanded="true" />
+            <element signature="e#1666#1672#0" expanded="true" />
+            <element signature="e#2415#2423#0" expanded="true" />
+            <element signature="e#2591#2592#0" expanded="true" />
+            <element signature="e#2643#2644#0" expanded="true" />
+            <element signature="e#2683#2684#0" expanded="true" />
+            <element signature="e#2725#2726#0" expanded="true" />
           </folding>
         </state>
       </provider>
