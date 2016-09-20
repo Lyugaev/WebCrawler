@@ -6,6 +6,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
@@ -70,12 +72,19 @@ class PageProcessTask implements Runnable {
         parentCdl.countDown();
     }
 
-    private List<Link> retrieveLinks(String url) {
+    private List<Link> retrieveLinks(String urlStr) {
         List<Link> linkList = new ArrayList<Link>();
 
+        URL url = null;
+        try {
+            url = new URL(urlStr);
+        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+            return linkList;
+        }
         Document doc = null;
         try {
-            doc = Jsoup.connect(url).get();
+            doc = Jsoup.parse(url, 0);
         } catch (IOException e) {
 //            e.printStackTrace();
             return linkList;
@@ -85,7 +94,7 @@ class PageProcessTask implements Runnable {
         for(Element linkElement: questions){
             String linkUrl = linkElement.attr("abs:href");
             if (!crawledLinks.contains(linkUrl)) {
-                linkList.add(new Link(linkUrl, this.link.linkDepth + 1, url));
+                linkList.add(new Link(linkUrl, this.link.linkDepth + 1, urlStr));
                 crawledLinks.add(linkUrl);
             }
         }
