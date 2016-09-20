@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="28c7e03f-fcfe-4438-aa99-1bd21ddf6e12" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/net/lyugaev/webcrawler/Application.class" afterPath="$PROJECT_DIR$/target/classes/net/lyugaev/webcrawler/Application.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/net/lyugaev/webcrawler/CrawlerConcurrent.class" afterPath="$PROJECT_DIR$/target/classes/net/lyugaev/webcrawler/CrawlerConcurrent.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/net/lyugaev/webcrawler/Link.class" afterPath="$PROJECT_DIR$/target/classes/net/lyugaev/webcrawler/Link.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/net/lyugaev/webcrawler/PageProcessTask.class" afterPath="$PROJECT_DIR$/target/classes/net/lyugaev/webcrawler/PageProcessTask.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/Application.java" afterPath="$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/Application.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/CrawlerConcurrent.java" afterPath="$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/CrawlerConcurrent.java" />
     </list>
     <ignored path="Problems.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,8 +28,8 @@
       <file leaf-file-name="Application.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+            <state relative-caret-position="15">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -44,8 +38,8 @@
       <file leaf-file-name="CrawlerConcurrent.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/CrawlerConcurrent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+            <state relative-caret-position="182">
+              <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
               <folding>
                 <element signature="e#2017#2023#0" expanded="true" />
               </folding>
@@ -861,7 +855,7 @@
       <workItem from="1474269278292" duration="3889000" />
       <workItem from="1474317522727" duration="3000" />
       <workItem from="1474317540057" duration="11950000" />
-      <workItem from="1474356013600" duration="5969000" />
+      <workItem from="1474356013600" duration="6639000" />
     </task>
     <servers />
   </component>
@@ -898,7 +892,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87091000" />
+    <option name="totallyTimeSpent" value="87761000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="969" extended-state="1" />
@@ -911,7 +905,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32666665" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32666665" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1132,7 +1126,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/Page.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/jsoup/jsoup/1.8.3/jsoup-1.8.3.jar!/org/jsoup/helper/HttpConnection.class" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/jsoup/jsoup/1.8.3/jsoup-1.8.3.jar!/org/jsoup/Jsoup.class" />
     <entry file="file://$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/CrawlerRegEx.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/jsoup/jsoup/1.8.3/jsoup-1.8.3.jar!/org/jsoup/Connection.class" />
     <entry file="jar:///usr/local/java/jdk1.8.0_92/src.zip!/java/lang/System.java" />
@@ -1164,16 +1157,27 @@
     <entry file="jar:///usr/local/java/jdk1.8.0_92/src.zip!/java/util/concurrent/Executors.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/Application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+        <state relative-caret-position="15">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/jsoup/jsoup/1.8.3/jsoup-1.8.3.jar!/org/jsoup/Jsoup.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="36" column="29" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
+          <folding>
+            <element signature="e#952#953#0" expanded="true" />
+            <element signature="e#1002#1003#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/lyugaev/webcrawler/CrawlerConcurrent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+        <state relative-caret-position="182">
+          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
           <folding>
             <element signature="e#2017#2023#0" expanded="true" />
           </folding>
