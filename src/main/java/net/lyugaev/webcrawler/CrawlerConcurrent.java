@@ -75,16 +75,9 @@ class PageProcessTask implements Runnable {
     private List<Link> retrieveLinks(String urlStr) {
         List<Link> linkList = new ArrayList<Link>();
 
-        URL url = null;
-        try {
-            url = new URL(urlStr);
-        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-            return linkList;
-        }
         Document doc = null;
         try {
-            doc = Jsoup.parse(url, 0);
+            doc = Jsoup.connect(urlStr).get();
         } catch (IOException e) {
 //            e.printStackTrace();
             return linkList;
