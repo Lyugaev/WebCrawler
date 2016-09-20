@@ -6,9 +6,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -32,33 +31,40 @@ class Link {
 class PageProcessTask implements Runnable {
 
     Link link;
+    int maxSearchDepth;
+    Set<String> crawledLinks;
     CountDownLatch parentCdl;
+    ExecutorService threadPool;
 
-    public PageProcessTask(Link link, CountDownLatch parentCdl) {
+    public PageProcessTask(Link link, int maxSearchDepth, Set<String> crawledLinks, CountDownLatch parentCdl, ExecutorService threadPool) {
         this.link = link;
+        this.maxSearchDepth = maxSearchDepth;
+        this.crawledLinks = crawledLinks;
         this.parentCdl = parentCdl;
+        this.threadPool = threadPool;
     }
 
     public void run() {
-        CrawlerConcurrent.processLink(link);
+        //processLink(link);
 
-        if (link.linkDepth == CrawlerConcurrent.maxSearchDepth) {
-            parentCdl.countDown();
-            return;
-        }
+        if (link.linkDepth < maxSearchDepth) {
 
-        List<Link> childLinks = retrieveLinks(link.url);
-        CountDownLatch cdl = new CountDownLatch(childLinks.size());
+            List<Link> childLinks = retrieveLinks(link.url);
+            if (!childLinks.isEmpty()) {
 
-        for(Link childLink : childLinks) {
-            PageProcessTask task = new PageProcessTask(childLink, cdl);
-            CrawlerConcurrent.threadPool.submit(task);
-        }
+                CountDownLatch cdl = new CountDownLatch(childLinks.size());
 
-        try {
-            cdl.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+                for (Link childLink : childLinks) {
+                    PageProcessTask task = new PageProcessTask(childLink, maxSearchDepth, crawledLinks, cdl, threadPool);
+                    threadPool.submit(task);
+                }
+
+                try {
+                    cdl.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         parentCdl.countDown();
@@ -78,33 +84,33 @@ class PageProcessTask implements Runnable {
         Elements questions = doc.select("a[href]");
         for(Element linkElement: questions){
             String linkUrl = linkElement.attr("abs:href");
-            if (!CrawlerConcurrent.crawledLinks.contains(linkUrl)) {
+            if (!crawledLinks.contains(linkUrl)) {
                 linkList.add(new Link(linkUrl, this.link.linkDepth + 1, url));
-                CrawlerConcurrent.crawledLinks.add(linkUrl);
+                crawledLinks.add(linkUrl);
             }
         }
 
         return linkList;
     }
+
+    private void processLink(Link link) {
+        //System.out.println(link.url);
+        //add to link tree
+        //linkTree.add(link.parentUrl, link.url, link.linkDepth);
+    }
 }
 
 public class CrawlerConcurrent {
 
-    static int maxSearchDepth;
-    static HashSet<String> crawledLinks = new HashSet<String>();
-    static private LinkTree linkTree;
-
-    static ExecutorService threadPool = Executors.newCachedThreadPool();
-
-    public CrawlerConcurrent(int maxSearchDepth) {
-        this.maxSearchDepth = maxSearchDepth;
-    }
+    private Set<String> crawledLinks = Collections.newSetFromMap(new ConcurrentHashMap<String, Boolean>());
+    private ExecutorService threadPool = Executors.newCachedThreadPool();
+//    private LinkTree linkTree;
 
     public int getcrawledLinksSize() {
         return crawledLinks.size();
     }
 
-    public void crawl(String startUrl) {
+    public void crawl(String startUrl, int maxSearchDepth) {
         long start = System.currentTimeMillis();
 
         crawledLinks.clear();
@@ -113,9 +119,9 @@ public class CrawlerConcurrent {
         CountDownLatch cdl = new CountDownLatch(1);
 
         Link startLink = new Link(startUrl, 0, "");
-        linkTree = new LinkTree(new Node(startLink));
+//        linkTree = new LinkTree(new Node(startLink));
 
-        PageProcessTask task = new PageProcessTask(startLink, cdl);
+        PageProcessTask task = new PageProcessTask(startLink, maxSearchDepth, crawledLinks, cdl, threadPool);
         threadPool.submit(task);
 
         try {
@@ -126,17 +132,11 @@ public class CrawlerConcurrent {
 
         threadPool.shutdown();
 
-        linkTree.print();
+//        linkTree.print();
 
         long finish = System.currentTimeMillis();
         System.out.println("--------------------------------------------------");
         System.out.println(finish - start + " ms");
         System.out.println(getcrawledLinksSize() + " links");
-    }
-
-    public static synchronized void processLink(Link link) {
-        //System.out.println(link.url);
-        //add to link tree
-        linkTree.add(link.parentUrl, link.url, link.linkDepth);
     }
 }

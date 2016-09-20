@@ -6,7 +6,7 @@ package net.lyugaev.webcrawler;
 public class Application {
 
     static final String START_URL = "https://spring.io/guides";
-    static final int MAX_LINK_DEPTH = 2;
+    static final int MAX_LINK_DEPTH = 3;
 
     public static void main(String[] args) {
 //        //not multi-thread crawler
@@ -22,7 +22,6 @@ public class Application {
 //        System.out.println(crawler.getcrawledLinksSize() + " links");
 
         //multi-thread crawler
-        CrawlerConcurrent crawlerConcurrent = new CrawlerConcurrent(MAX_LINK_DEPTH);
-        crawlerConcurrent.crawl(START_URL);
+        new CrawlerConcurrent().crawl(START_URL, MAX_LINK_DEPTH);
     }
 }
